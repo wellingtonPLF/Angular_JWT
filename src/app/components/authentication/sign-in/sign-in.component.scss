@@ -1,0 +1,35 @@
+.title{
+    text-align: center;
+    margin-top: 0px;
+}
+
+.signIn{
+    background-color: blue;
+    width: 230px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.entrys{
+    display: flex;
+    flex-direction: column;
+}
+
+.entrys input{
+    width: 150px;
+}
+
+.btn {
+    display: flex;
+    width: 158px;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn button{
+    width: 75px;
+}

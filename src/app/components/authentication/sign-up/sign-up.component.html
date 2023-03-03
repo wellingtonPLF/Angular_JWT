@@ -1,0 +1,25 @@
+<div class="signUp">
+    <h4 class="title">SignUp</h4>
+    <div>
+        <div class="entrys">
+            <label>username</label>
+            <input [(ngModel)]="user.name" >
+        </div>
+        <div class="entrys">
+            <label>password</label>
+            <input type="password" autocomplete="new-password" [(ngModel)]="user.password" >
+        </div>
+        <div class="entrys">
+            <label>email</label>
+            <input [(ngModel)]="user.email" >
+        </div>
+        <div class="entrys">
+            <label>datanasc</label>
+            <input type="date" min="1900-01-01" [(ngModel)]="user.datanasc" >
+        </div>
+    </div>
+    <div class="btn">
+        <button [routerLink]="['']">cancel</button>
+        <button (click)="validateUser()" >confirm</button>
+    </div>
+</div>

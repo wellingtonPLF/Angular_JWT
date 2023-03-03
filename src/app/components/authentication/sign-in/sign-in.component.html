@@ -1,0 +1,17 @@
+<div class="signIn">
+    <h4 class="title">SignIn</h4>
+    <div>
+        <div class="entrys">
+            <label>email</label>
+            <input [(ngModel)]="user.username" >
+        </div>
+        <div class="entrys">
+            <label>password</label>
+            <input type="password" autocomplete="new-password" [(ngModel)]="user.password" >
+        </div>
+    </div>
+    <div class="btn">
+        <button [routerLink]="['']">cancel</button>
+        <button (click)="validateUser()">confirm</button>
+    </div>
+</div>
