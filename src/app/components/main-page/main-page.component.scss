@@ -1,0 +1,23 @@
+
+.atributos {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+#credentials{
+    width: 235px; 
+    background-color: red; 
+    color: white;
+}
+
+.authBtn{
+    margin-bottom: 10px; 
+    background-color: black;
+    display: flex; 
+    justify-content: space-between; 
+    width: 235px;
+}

@@ -3,11 +3,16 @@
     <div>
         <div class="entrys">
             <label>email</label>
-            <input [(ngModel)]="user.username" >
+            <input [(ngModel)]="auth.email" >
         </div>
         <div class="entrys">
             <label>password</label>
-            <input type="password" autocomplete="new-password" [(ngModel)]="user.password" >
+            <input type="password" autocomplete="off" [(ngModel)]="auth.password" >
+        </div>
+    </div>
+    <div style="margin-top: 10px; font-size: 15px; text-align: center;" [hidden]="error.enabled">
+        <div *ngFor="let error of error.errors">
+            <div>{{error}}</div>
         </div>
     </div>
     <div class="btn">

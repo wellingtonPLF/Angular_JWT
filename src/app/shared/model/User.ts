@@ -1,24 +1,37 @@
-import { UserType } from "./UserType";
+import { Auth } from "./Auth";
 
 export class User {
 
     private _id?: number;
-    private _name?: string;
-    private _password?: string;
-    private _email?: string;
-    private _datanasc?: string;
+    private _nickName?: string;
+    private _bornDate?: string;
+    private _auth?: Auth;
 
-    constructor(id:number, name: string, password: string, email: string, datanasc: string);
+    constructor(id:number, nickName: string, bornDate: string);
+    constructor(nickName: string, bornDate: string);
     constructor();
-    constructor() {} //<= Important
+    constructor(...myarray: any[]){
+        if (myarray.length === 2) {
+            this._nickName = myarray[0]
+            this._bornDate = myarray[1]
+            return;
+        }
+        if (myarray.length === 3) {
+            this._id = myarray[0]
+            this._nickName = myarray[1]
+            this._bornDate = myarray[2]
+            return;
+        }
+    }
 
-    refract(): UserType {
+    static refract(user: User) {
+        console.log(user)
+        console.log(user.id)
         const result = { 
-          id: this._id, 
-          name: this._name, 
-          password: this._password, 
-          email: this._email,
-          datanasc: this._datanasc
+          id: user.id,  
+          nickName: user.nickName, 
+          bornDate: user.bornDate,
+          auth: Auth.refract(user.auth)
         }
         return result;
     }
@@ -31,35 +44,27 @@ export class User {
         this._id = id;
     }
 
-    get name(): string | undefined{
-        return this._name;
+    get nickName(): string | undefined{
+        return this._nickName;
     }
 
-    set name(name: string | undefined){
-        this._name = name;
+    set nickName(nickName: string | undefined){
+        this._nickName = nickName;
     }
 
-    get password(): string | undefined{
-        return this._password;
+    get bornDate(): string | undefined{
+        return this._bornDate;
     }
 
-    set password(password: string | undefined){
-        this._password = password;
+    set bornDate(bornDate: string | undefined){
+        this._bornDate = bornDate;
     }
 
-    get email(): string | undefined{
-        return this._email;
+    get auth(): Auth | undefined{
+        return this._auth;
     }
 
-    set email(email: string | undefined){
-        this._email = email;
-    }
-
-    get datanasc(): string | undefined{
-        return this._datanasc;
-    }
-
-    set datanasc(datanasc: string | undefined){
-        this._datanasc = datanasc;
+    set auth(auth: Auth | undefined){
+        this._auth = auth;
     }
 }

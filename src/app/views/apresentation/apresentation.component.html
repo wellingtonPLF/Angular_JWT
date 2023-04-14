@@ -5,15 +5,20 @@
             <div *ngFor="let user of users">
                 <div style="margin-top: 15px;">
                     <div class="userField">
-                        <label>username:</label>
-                        <div>{{user.name}}</div>
+                        <label>nickname:</label>
+                        <div>{{user.nickName}}</div>
                     </div>
                     <div class="userField">
-                        <label>password:</label>
-                        <div>{{user.password}}</div>
+                        <label>email:</label>
+                        <div>{{user.email}}</div>
+                    </div>
+                    <div class="userField">
+                        <label>bornDate:</label>
+                        <div>{{user.bornDate}}</div>
                     </div>
                 </div>
             </div>
         </div>
+        <button [routerLink]="['/']">homePage</button>
     </div>
 </div>

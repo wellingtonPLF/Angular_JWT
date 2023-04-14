@@ -9,22 +9,32 @@ import { UserAuthComponent } from './views/user-auth/user-auth.component';
 import {HttpClientModule} from '@angular/common/http';
 import { AuthenticationModule } from './components/authentication/authentication.module';
 import { ApresentationComponent } from './views/apresentation/apresentation.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './ngRx/store';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { authInterceptorProviders } from './interceptor/auth.interceptor';
+import { ErrorComponent } from './components/error/error.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UserAuthComponent,
-    ApresentationComponent
+    ApresentationComponent,
+    MainPageComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     AuthenticationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers)
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

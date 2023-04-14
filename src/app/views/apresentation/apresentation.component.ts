@@ -1,6 +1,8 @@
 import { UserService } from './../../shared/service/user/user.service';
 import { Component } from '@angular/core';
-import { User } from 'src/app/shared/model/User';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { UserResponse } from 'src/app/shared/types/UserType';
 
 @Component({
   selector: 'app-apresentation',
@@ -8,14 +10,18 @@ import { User } from 'src/app/shared/model/User';
   styleUrls: ['./apresentation.component.scss']
 })
 export class ApresentationComponent {
-  users?: Array<User>;
+  users?: Array<UserResponse>;
 
-  constructor(private userService: UserService){}
+  constructor(private store: Store<{authReducer: Boolean}>, 
+    private userService: UserService, private router: Router){}
 
   ngOnInit() {
     this.userService.listAll().subscribe(
-      it => {
-        this.users = it.data;
+      {
+        next: it => {
+          this.users = it.data;
+        },
+        error: err => {}
       }
     )
   }

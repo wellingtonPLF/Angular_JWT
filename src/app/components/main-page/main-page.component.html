@@ -1,0 +1,36 @@
+<div style="margin-left: 10px;">
+    <h1>Main Page</h1>
+    <div style="width: 300px">
+        <!--Name-->
+        <div class="atributos">
+            <div>Name: {{user.nickName}}</div>
+        </div>
+        <input type="text" [ngModel]="user.nickName" 
+        (ngModelChange)="onUserNameChange($event, 'nickName')">
+        <button (click)="edit()">update</button>
+        <!--Email-->
+        <div class="atributos">
+            <div>Email: {{user.email}}</div>
+        </div>
+        <!--BornDate-->
+        <div class="atributos">
+            <div>BornDate: {{user.bornDate}}</div>
+        </div>
+        <input type="text" [ngModel]="user.bornDate" 
+        (ngModelChange)="onUserNameChange($event, 'bornDate')">
+        <button (click)="edit()">update</button>
+        <!--Credentials-->
+        <div class="atributos" id="credentials">
+            <div style="text-align: center; width: 100px;">credentials</div>
+        </div>
+        <div class="authBtn">
+            <button style="width: 100px" (click)="credentials()">permition</button>
+            <button style="width: 100px" (click)="updateCredentials()">update</button>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; width: 230px;">
+        <button [routerLink]="['']">Go Home</button>
+        <button (click)="logOut()">LogOut</button>   
+        <button (click)="remove()">DeleteUser</button>
+    </div>
+</div>

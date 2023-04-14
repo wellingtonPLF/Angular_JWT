@@ -2,20 +2,29 @@
     <h4 class="title">SignUp</h4>
     <div>
         <div class="entrys">
+            <label>nickname</label>
+            <input [(ngModel)]="user.nickName" >
+        </div>
+        <div class="entrys">
             <label>username</label>
-            <input [(ngModel)]="user.name" >
+            <input [(ngModel)]="auth.username" >
         </div>
         <div class="entrys">
             <label>password</label>
-            <input type="password" autocomplete="new-password" [(ngModel)]="user.password" >
+            <input type="password" autocomplete="new-password" [(ngModel)]="auth.password" >
         </div>
         <div class="entrys">
             <label>email</label>
-            <input [(ngModel)]="user.email" >
+            <input [(ngModel)]="auth.email" >
         </div>
         <div class="entrys">
-            <label>datanasc</label>
-            <input type="date" min="1900-01-01" [(ngModel)]="user.datanasc" >
+            <label>borndate</label>
+            <input type="date" min="1900-01-01" [(ngModel)]="user.bornDate" >
+        </div>
+    </div>
+    <div style="margin-top: 10px; font-size: 15px; text-align: center;" [hidden]="error.enabled">
+        <div *ngFor="let error of error.errors">
+            <div>{{error}}</div>
         </div>
     </div>
     <div class="btn">

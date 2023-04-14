@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { StatusResult } from '../../format/StatusResult';
-import { AuthUser } from '../../model/AuthUser';
+import { catchError} from 'rxjs/operators';
+import { StatusResult } from '../../interfaces/I_StatusResult';
 import { User } from '../../model/User';
+import { UserResponse } from '../../types/UserType';
 
 @Injectable({
   providedIn: 'root'
@@ -13,51 +13,43 @@ export class UserService {
 
   URL_User = 'http://localhost:8080/usuarios'
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
-  public listAll(): Observable<StatusResult<User []>>{
-    return this.httpClient.get<StatusResult<User []>>(this.URL_User).pipe(
+  public listAll(): Observable<StatusResult<UserResponse []>>{
+    return this.httpClient.get<StatusResult<UserResponse []>>(this.URL_User).pipe(
       catchError( error => {
         return throwError(() => error.error);
       })
     );
   }
 
-  public findById(id: number): Observable<StatusResult<User>>{
-    return this.httpClient.get<StatusResult<User>>(`${this.URL_User}/${id}`).pipe(
+  public getAuthenticatedUser(): Observable<StatusResult<UserResponse>>{
+    return this.httpClient.get<StatusResult<UserResponse>>(`${this.URL_User}/getUser`).pipe(
       catchError( error => {
         return throwError(() => error.error);
       })
     );
-  }
-
-  public validateUser(user: AuthUser): Observable<any>{
-    return this.httpClient.get<StatusResult<User>>(
-      `${this.URL_User}/validarSenha?username=${user.username}&password=${user.password}`).pipe(
-        catchError( error => {
-          return throwError(() => error.error);
-        })
-      );
   }
 
   public insert(user: User): Observable<StatusResult<User>>{
-    return this.httpClient.post<StatusResult<User>>(this.URL_User, user.refract()).pipe(
+    return this.httpClient.post<StatusResult<User>>(this.URL_User, User.refract(user)).pipe(
       catchError( error => {
         return throwError(() => error.error);
       })
     );
   }
 
-  public update(user: User): Observable<StatusResult<User>>{
-    return this.httpClient.put<StatusResult<User>>(this.URL_User, user.refract()).pipe(
+  public update(user: UserResponse): Observable<StatusResult<UserResponse>> {
+    return this.httpClient.put<StatusResult<UserResponse>>(this.URL_User, user).pipe(
       catchError( error => {
         return throwError(() => error.error);
       })
     );
   }
 
-  public delete(id: number): Observable<StatusResult<User>>{
-    return this.httpClient.delete<StatusResult<User>>(`${this.URL_User}/${id}`).pipe(
+  public delete(user: UserResponse): Observable<StatusResult<string>>{
+    return this.httpClient.delete<StatusResult<string>>(`${this.URL_User}/${user.id}`).pipe(
       catchError( error => {
         return throwError(() => error.error);
       })
