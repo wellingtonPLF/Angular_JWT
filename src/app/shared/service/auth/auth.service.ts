@@ -14,8 +14,8 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public authentication(auth: Auth): Observable<StatusResult<number>>{
-    return this.httpClient.post<StatusResult<number>>(`${this.URL_Auth}/authentication`, 
+  public authentication(auth: Auth): Observable<StatusResult<string>>{
+    return this.httpClient.post<StatusResult<string>>(`${this.URL_Auth}/authentication`, 
     Auth.refract(auth)).pipe(
       catchError( error => {
           return throwError(() => error.error);
